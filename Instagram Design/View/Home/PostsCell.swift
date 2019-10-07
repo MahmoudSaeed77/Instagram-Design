@@ -1,15 +1,14 @@
 //
-//  HomeCell.swift
+//  PostsCell.swift
 //  Instagram Design
 //
-//  Created by Mohamed Ibrahem on 8/20/19.
+//  Created by Mohamed Ibrahem on 8/25/19.
 //  Copyright © 2019 Mahmoud Saeed. All rights reserved.
 //
 
 import UIKit
 
-class HomeCell: UICollectionViewCell {
-    
+class PostsCell: UICollectionViewCell {
     
     
     let profileImage: UIImageView = {
@@ -115,8 +114,11 @@ class HomeCell: UICollectionViewCell {
         label.font = UIFont.systemFont(ofSize: 16)
         return label
     }()
+    
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
         backgroundColor = .white
         
         addSubview(profileImage)
@@ -131,6 +133,7 @@ class HomeCell: UICollectionViewCell {
         addSubview(commentCountLabel)
         addSubview(shareButton)
         addSubview(timeCountLabel)
+        
         
         
         NSLayoutConstraint.activate([
@@ -170,11 +173,15 @@ class HomeCell: UICollectionViewCell {
             
             shareButton.leadingAnchor.constraint(equalTo: commentCountLabel.trailingAnchor, constant: 20),
             shareButton.centerYAnchor.constraint(equalTo: commentIcon.centerYAnchor),
+            shareButton.centerXAnchor.constraint(equalTo: centerXAnchor),
             
             timeCountLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -5),
             timeCountLabel.centerYAnchor.constraint(equalTo: commentIcon.centerYAnchor)
             ])
+
     }
+    
+    
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

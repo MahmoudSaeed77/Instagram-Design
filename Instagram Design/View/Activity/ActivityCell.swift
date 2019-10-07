@@ -56,13 +56,14 @@ class ActivityCell: UICollectionViewCell, UICollectionViewDelegate, UICollection
         
         activityButton.addTarget(self, action: #selector(activityAction), for: .touchUpInside)
         collectionView.register(FollowingCell.self, forCellWithReuseIdentifier: cellId)
-        collectionView.register(YouCell.self, forCellWithReuseIdentifier: secondId)
+        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "Second")
 
         
         NSLayoutConstraint.activate([
-            triggerView.widthAnchor.constraint(equalTo: widthAnchor),
+            triggerView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.9),
             triggerView.topAnchor.constraint(equalTo: topAnchor),
-            triggerView.heightAnchor.constraint(equalToConstant: 25),
+            triggerView.heightAnchor.constraint(equalToConstant: 30),
+            triggerView.centerXAnchor.constraint(equalTo: centerXAnchor),
             
             collectionView.widthAnchor.constraint(equalTo: widthAnchor),
             collectionView.topAnchor.constraint(equalTo: triggerView.bottomAnchor, constant: 5),
@@ -70,16 +71,16 @@ class ActivityCell: UICollectionViewCell, UICollectionViewDelegate, UICollection
             ])
         
         leadingConstraints = [
-            activityButton.heightAnchor.constraint(equalTo: triggerView.heightAnchor, multiplier: 1.0),
+            activityButton.heightAnchor.constraint(equalTo: triggerView.heightAnchor),
             activityButton.centerYAnchor.constraint(equalTo: triggerView.centerYAnchor),
-            activityButton.leadingAnchor.constraint(equalTo: triggerView.leadingAnchor, constant: 10),
+            activityButton.leadingAnchor.constraint(equalTo: triggerView.leadingAnchor),
             activityButton.widthAnchor.constraint(equalTo: triggerView.widthAnchor, multiplier: 0.5)
         ]
         
         trailingConstraints = [
-            activityButton.heightAnchor.constraint(equalTo: triggerView.heightAnchor, multiplier: 1.0),
+            activityButton.heightAnchor.constraint(equalTo: triggerView.heightAnchor),
             activityButton.centerYAnchor.constraint(equalTo: triggerView.centerYAnchor),
-            activityButton.trailingAnchor.constraint(equalTo: triggerView.trailingAnchor, constant: -10),
+            activityButton.trailingAnchor.constraint(equalTo: triggerView.trailingAnchor),
             activityButton.widthAnchor.constraint(equalTo: triggerView.widthAnchor, multiplier: 0.5)
         ]
         NSLayoutConstraint.activate(leadingConstraints)
@@ -90,10 +91,12 @@ class ActivityCell: UICollectionViewCell, UICollectionViewDelegate, UICollection
         if clicked {
             NSLayoutConstraint.activate(leadingConstraints)
             NSLayoutConstraint.deactivate(trailingConstraints)
+            activityButton.setTitle("Following", for: .normal)
             clicked = !clicked
         }else{
             NSLayoutConstraint.activate(trailingConstraints)
             NSLayoutConstraint.deactivate(leadingConstraints)
+            activityButton.setTitle("You", for: .normal)
             clicked = !clicked
         }
     }
@@ -103,12 +106,10 @@ class ActivityCell: UICollectionViewCell, UICollectionViewDelegate, UICollection
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        if clicked {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! FollowingCell
+            
             return cell
-//        }
-//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: secondId, for: indexPath) as! YouCell
-//        return cell
+
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 5

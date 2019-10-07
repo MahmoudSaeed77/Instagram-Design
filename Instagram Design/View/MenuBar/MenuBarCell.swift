@@ -13,23 +13,14 @@ class MenuBarCell: UICollectionViewCell {
     let imageView: UIImageView = {
         let image = UIImageView(image: UIImage(named: "Home")?.withRenderingMode(.alwaysTemplate))
         image.translatesAutoresizingMaskIntoConstraints = false
+        image.tintColor = UIColor.black
         return image
     }()
-    
-    override var isHighlighted: Bool {
-        didSet{
-            if isHighlighted {
-                imageView.tintColor = .white
-            }else{
-                imageView.tintColor = .black
-            }
-        }
-    }
     
     override var isSelected: Bool {
         didSet{
             if isSelected {
-                imageView.tintColor = .white
+                imageView.tintColor = .blue
             }else{
                 imageView.tintColor = .black
             }

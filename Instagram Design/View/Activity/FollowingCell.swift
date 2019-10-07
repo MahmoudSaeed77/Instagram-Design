@@ -49,7 +49,7 @@ class FollowingCell: UICollectionViewCell, UICollectionViewDelegate, UICollectio
         let layout = UICollectionViewFlowLayout()
         let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collection.translatesAutoresizingMaskIntoConstraints = false
-        collection.backgroundColor = UIColor.cyan
+        collection.backgroundColor = UIColor.white
         collection.alwaysBounceHorizontal = true
         layout.scrollDirection = .horizontal
         return collection
@@ -71,6 +71,7 @@ class FollowingCell: UICollectionViewCell, UICollectionViewDelegate, UICollectio
         super.init(frame: frame)
         
         photoLikedCollection.register(PhotoLiked.self, forCellWithReuseIdentifier: cellId)
+        
         photoLikedCollection.delegate = self
         photoLikedCollection.dataSource = self
         
@@ -133,7 +134,7 @@ class PhotoLiked: UICollectionViewCell {
     }()
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = UIColor.red
+        backgroundColor = UIColor.white
         addSubview(imageView)
         imageView.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
         imageView.heightAnchor.constraint(equalTo: heightAnchor).isActive = true

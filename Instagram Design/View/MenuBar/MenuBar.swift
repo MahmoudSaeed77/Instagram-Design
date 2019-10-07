@@ -23,7 +23,7 @@ class MenuBar: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UIC
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = UIColor.lightGray
+        backgroundColor = #colorLiteral(red: 0.9375661016, green: 0.9215624928, blue: 0.9212713838, alpha: 1)
         addSubview(collectionView)
         
         collectionView.delegate = self
@@ -37,8 +37,7 @@ class MenuBar: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UIC
             ])
         
         let selectedIndexPath = NSIndexPath(item: 0, section: 0)
-        collectionView.selectItem(at: selectedIndexPath as IndexPath, animated: false, scrollPosition: .init(rawValue: 0))
-        
+        collectionView.selectItem(at: selectedIndexPath as IndexPath, animated: true, scrollPosition: .centeredVertically)
         
         
     }
@@ -51,7 +50,6 @@ class MenuBar: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UIC
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! MenuBarCell
         cell.imageView.image = UIImage(named: imageNames[indexPath.item])?.withRenderingMode(.alwaysTemplate)
-        cell.imageView.tintColor = .black
         return cell
     }
     
