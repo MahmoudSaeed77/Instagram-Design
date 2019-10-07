@@ -24,10 +24,11 @@ class ProfileCell: UICollectionViewCell, UICollectionViewDelegate, UICollectionV
         collection.alwaysBounceVertical = true
         return collection
     }()
-    
+
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        clipsToBounds = true
         backgroundColor = UIColor.white
         
         addSubview(collectionView)

@@ -118,7 +118,7 @@ class PostsCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+        clipsToBounds = true
         backgroundColor = .white
         
         addSubview(profileImage)
@@ -173,7 +173,7 @@ class PostsCell: UICollectionViewCell {
             
             shareButton.leadingAnchor.constraint(equalTo: commentCountLabel.trailingAnchor, constant: 20),
             shareButton.centerYAnchor.constraint(equalTo: commentIcon.centerYAnchor),
-            shareButton.centerXAnchor.constraint(equalTo: centerXAnchor),
+            
             
             timeCountLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -5),
             timeCountLabel.centerYAnchor.constraint(equalTo: commentIcon.centerYAnchor)

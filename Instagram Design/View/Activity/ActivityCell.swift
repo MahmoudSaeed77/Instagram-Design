@@ -47,6 +47,7 @@ class ActivityCell: UICollectionViewCell, UICollectionViewDelegate, UICollection
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        clipsToBounds = true
         backgroundColor = UIColor.white
         collectionView.delegate = self
         collectionView.dataSource = self

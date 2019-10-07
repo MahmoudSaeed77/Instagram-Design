@@ -69,7 +69,7 @@ class FollowingCell: UICollectionViewCell, UICollectionViewDelegate, UICollectio
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+        clipsToBounds = true
         photoLikedCollection.register(PhotoLiked.self, forCellWithReuseIdentifier: cellId)
         
         photoLikedCollection.delegate = self
@@ -134,6 +134,7 @@ class PhotoLiked: UICollectionViewCell {
     }()
     override init(frame: CGRect) {
         super.init(frame: frame)
+        clipsToBounds = true
         backgroundColor = UIColor.white
         addSubview(imageView)
         imageView.widthAnchor.constraint(equalTo: widthAnchor).isActive = true

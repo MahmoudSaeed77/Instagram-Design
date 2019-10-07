@@ -67,6 +67,7 @@ class InfoCell: UICollectionViewCell{
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        clipsToBounds = true
         backgroundColor = UIColor.white
         
         addSubview(coverImage)

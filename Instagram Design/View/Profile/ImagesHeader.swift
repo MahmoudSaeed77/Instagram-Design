@@ -20,6 +20,7 @@ class ImagesHeader: UICollectionViewCell, UICollectionViewDelegate, UICollection
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        clipsToBounds = true
         backgroundColor = UIColor.white
         
         addSubview(collectionView)
@@ -64,6 +65,7 @@ class HeaderCell: UICollectionViewCell {
     }()
     override init(frame: CGRect) {
         super.init(frame: frame)
+        clipsToBounds = true
         backgroundColor = UIColor.white
         addSubview(imageView)
         

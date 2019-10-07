@@ -26,6 +26,7 @@ class Search: UICollectionViewCell {
     }()
     override init(frame: CGRect) {
         super.init(frame: frame)
+        clipsToBounds = true
         backgroundColor = UIColor.white
         
         collectionView.register(ListCell.self, forCellWithReuseIdentifier: listId)
@@ -100,6 +101,7 @@ class ListCell: UICollectionViewCell {
     }()
     override init(frame: CGRect) {
         super.init(frame: frame)
+        clipsToBounds = true
         backgroundColor = UIColor.white
         
         addSubview(hashLabel)

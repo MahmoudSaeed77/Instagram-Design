@@ -59,78 +59,6 @@ class HomeVC: UIViewController {
         return bar
     }()
     
-    let shareView = UIView()
-    
-    let overlayView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = #colorLiteral(red: 0.9998916984, green: 1, blue: 0.9998809695, alpha: 1)
-        view.layer.opacity = 0.7
-        return view
-    }()
-    
-    
-    let search: UIButton = {
-        let button = UIButton(type: .system)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setImage(UIImage(named: "Search")?.withRenderingMode(.alwaysOriginal), for: .normal)
-        return button
-    }()
-    
-    let shareTitle: UILabel = {
-        let label = UILabel()
-        label.text = "Share"
-        label.textColor = UIColor.black
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
-    let seperatorView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = UIColor.lightGray
-        return view
-    }()
-    
-    let shareCollection: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        let collection = UICollectionView(frame: CGRect(x: 0, y: 0, width: 0, height: 0), collectionViewLayout: layout)
-        collection.translatesAutoresizingMaskIntoConstraints = false
-        layout.scrollDirection = .horizontal
-        collection.backgroundColor = .red
-        return collection
-    }()
-    
-    let secondSeperatorView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = UIColor.lightGray
-        return view
-    }()
-    
-    let socialCollection: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        let collection = UICollectionView(frame: CGRect(x: 0, y: 0, width: 0, height: 0), collectionViewLayout: layout)
-        collection.translatesAutoresizingMaskIntoConstraints = false
-        layout.scrollDirection = .horizontal
-        collection.backgroundColor = .red
-        return collection
-    }()
-    
-    let thirdSeperatorView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = UIColor.lightGray
-        return view
-    }()
-    
-    let cancelButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Cancel", for: .normal)
-        button.setTitleColor(UIColor.black, for: .normal)
-        return button
-    }()
     
     
     
@@ -138,20 +66,9 @@ class HomeVC: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         view.clipsToBounds = true
-        cancelButton.isHidden = true
-        let tap = UITapGestureRecognizer(target: self, action: #selector(tapAction))
-        
         
         collectionView.delegate = self
         collectionView.dataSource = self
-        
-        
-        shareView.translatesAutoresizingMaskIntoConstraints = false
-        shareView.backgroundColor = UIColor.white
-        shareView.layer.shadowColor = UIColor.black.cgColor
-        shareView.layer.shadowOpacity = 0.5
-        shareView.layer.shadowOffset = .zero
-        
         
         collectionView.collectionViewLayout.invalidateLayout()
         
@@ -169,27 +86,6 @@ class HomeVC: UIViewController {
         topView.addSubview(newMessageIcon)
         view.addSubview(collectionView)
         view.addSubview(menuBar)
-        view.addSubview(overlayView)
-        overlayView.addGestureRecognizer(tap)
-        view.addSubview(shareView)
-        
-        
-        overlayView.isHidden = true
-        
-        topConstraint = [
-            shareView.widthAnchor.constraint(equalTo: view.widthAnchor),
-            shareView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            shareView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            shareView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.4)
-        ]
-        bottomConstraints = [
-            shareView.widthAnchor.constraint(equalTo: view.widthAnchor),
-            shareView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            shareView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            shareView.heightAnchor.constraint(equalToConstant: 0)
-        ]
-        NSLayoutConstraint.activate(bottomConstraints)
-        
         
         NSLayoutConstraint.activate([
             
@@ -212,64 +108,13 @@ class HomeVC: UIViewController {
             menuBar.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             menuBar.heightAnchor.constraint(equalToConstant: 75),
             
-            overlayView.widthAnchor.constraint(equalTo: view.widthAnchor),
-            overlayView.heightAnchor.constraint(equalTo: view.heightAnchor)
             
             ])
-        
-           shareView.addSubview(search)
-           shareView.addSubview(shareTitle)
-           shareView.addSubview(seperatorView)
-           shareView.addSubview(shareCollection)
-           shareView.addSubview(secondSeperatorView)
-           shareView.addSubview(socialCollection)
-           shareView.addSubview(thirdSeperatorView)
-           shareView.addSubview(cancelButton)
-
-        
-        
-        NSLayoutConstraint.activate([
-            search.leadingAnchor.constraint(equalTo: shareView.leadingAnchor, constant: 15),
-            search.topAnchor.constraint(equalTo: shareView.topAnchor, constant: 10),
-            
-            shareTitle.centerXAnchor.constraint(equalTo: shareView.centerXAnchor),
-            shareTitle.topAnchor.constraint(equalTo: shareView.topAnchor, constant: 10),
-            
-            seperatorView.widthAnchor.constraint(equalTo: shareView.widthAnchor),
-            seperatorView.heightAnchor.constraint(equalToConstant: 0.5),
-            seperatorView.topAnchor.constraint(equalTo: search.bottomAnchor, constant: 10),
-            
-            shareCollection.widthAnchor.constraint(equalTo: view.widthAnchor),
-            shareCollection.topAnchor.constraint(equalTo: seperatorView.bottomAnchor),
-            shareCollection.heightAnchor.constraint(equalTo: shareView.heightAnchor, multiplier: 0.3),
-            
-            secondSeperatorView.widthAnchor.constraint(equalTo: shareView.widthAnchor),
-            secondSeperatorView.heightAnchor.constraint(equalToConstant: 0.5),
-            secondSeperatorView.topAnchor.constraint(equalTo: shareCollection.bottomAnchor),
-            
-            socialCollection.widthAnchor.constraint(equalTo: view.widthAnchor),
-            socialCollection.topAnchor.constraint(equalTo: secondSeperatorView.bottomAnchor),
-            socialCollection.heightAnchor.constraint(equalTo: shareView.heightAnchor, multiplier: 0.3),
-            
-            thirdSeperatorView.widthAnchor.constraint(equalTo: shareView.widthAnchor),
-            thirdSeperatorView.heightAnchor.constraint(equalToConstant: 0.5),
-            thirdSeperatorView.topAnchor.constraint(equalTo: socialCollection.bottomAnchor),
-            
-            
-            cancelButton.bottomAnchor.constraint(equalTo: shareView.bottomAnchor, constant: -10),
-            cancelButton.centerXAnchor.constraint(equalTo: shareView.centerXAnchor)
-            ])
-        
     }
-    
-    @objc func tapAction(sender: UITapGestureRecognizer){
-        NSLayoutConstraint.deactivate(topConstraint)
-        NSLayoutConstraint.activate(bottomConstraints)
-        overlayView.isHidden = true
-        cancelButton.isHidden = true
+    let share = ShareVC()
+    func shareViewSetup(){
+        share.showView()
     }
-    
-    
 }
 
 

@@ -20,7 +20,7 @@ class Camera: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+        clipsToBounds = true
         backgroundColor = UIColor.white
         
         let bottomView = UIView()

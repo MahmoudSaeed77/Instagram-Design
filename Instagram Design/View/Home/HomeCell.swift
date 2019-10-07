@@ -11,6 +11,8 @@ import UIKit
 class HomeCell: UICollectionViewCell, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout  {
     let cellId = "cellId"
     var homevc = HomeVC()
+    let names = ["avatar", "Avatar-1"]
+    let maps = ["Img", "Bitmap-1"]
     let collectioView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -24,6 +26,7 @@ class HomeCell: UICollectionViewCell, UICollectionViewDelegate, UICollectionView
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        clipsToBounds = true
         backgroundColor = .white
         
         addSubview(collectioView)
@@ -44,11 +47,13 @@ class HomeCell: UICollectionViewCell, UICollectionViewDelegate, UICollectionView
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return names.count
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! PostsCell
         cell.shareButton.addTarget(self, action: #selector(shareAction), for: .touchUpInside)
+        cell.profileImage.image = UIImage(named: names[indexPath.item])
+        cell.postImage.image = UIImage(named: maps[indexPath.item])
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -57,23 +62,7 @@ class HomeCell: UICollectionViewCell, UICollectionViewDelegate, UICollectionView
 
     
     @objc func shareAction(sender: UIButton){
-        print("qwertyuiop")
-        homevc.shareClicked = true
-        if homevc.shareClicked {
-            homevc.overlayView.isHidden = false
-            homevc.shareView.isHidden = false
-            homevc.cancelButton.isHidden = false
-            NSLayoutConstraint.activate(homevc.topConstraint)
-            NSLayoutConstraint.deactivate(homevc.bottomConstraints)
-            homevc.shareClicked = !homevc.shareClicked
-        }else{
-            homevc.shareView.isHidden = true
-            homevc.cancelButton.isHidden = true
-            NSLayoutConstraint.activate(homevc.bottomConstraints)
-            NSLayoutConstraint.deactivate(homevc.topConstraint)
-            homevc.shareClicked = !homevc.shareClicked
-        }
-        
+        homevc.shareViewSetup()
     }
     
     required init?(coder aDecoder: NSCoder) {

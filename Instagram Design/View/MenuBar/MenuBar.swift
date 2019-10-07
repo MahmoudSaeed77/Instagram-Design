@@ -23,6 +23,7 @@ class MenuBar: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UIC
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        clipsToBounds = true
         backgroundColor = #colorLiteral(red: 0.9375661016, green: 0.9215624928, blue: 0.9212713838, alpha: 1)
         addSubview(collectionView)
         
